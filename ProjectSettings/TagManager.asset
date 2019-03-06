@@ -41,12 +41,3 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 387242409
-    locked: 0
-  - name: Ground
-    uniqueID: 826728055
-    locked: 0
-  - name: Actor
-    uniqueID: 1536653831
-    locked: 0

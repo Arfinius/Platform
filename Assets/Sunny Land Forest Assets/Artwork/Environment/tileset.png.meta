@@ -13,20 +13,20 @@ TextureImporter:
     21300016: tileset_8
     21300018: Environment_0
     21300020: Environment_1
-    21300022: tileset_11
-    21300024: tileset_12
-    21300026: tileset_13
-    21300028: tileset_14
+    21300022: cave_0
+    21300024: cave_3
+    21300026: cave_5
+    21300028: cave_8
     21300030: Ground_20
     21300032: Ground_22
     21300034: Ground_0
     21300036: Ground_1
     21300038: Ground_2
     21300040: Ground_3
-    21300042: tileset_21
-    21300044: tileset_22
-    21300046: tileset_23
-    21300048: tileset_24
+    21300042: cave_1
+    21300044: cave_4
+    21300046: cave_6
+    21300048: cave_9
     21300050: Ground_21
     21300052: Ground_23
     21300054: Environment_2
@@ -35,9 +35,9 @@ TextureImporter:
     21300060: Ground_6
     21300062: Ground_7
     21300064: Environment_4
-    21300066: tileset_33
-    21300068: tileset_34
-    21300070: tileset_35
+    21300066: cave_2
+    21300068: cave_7
+    21300070: cave_10
     21300072: Environment_3
     21300074: Ground_8
     21300076: Ground_9
@@ -56,8 +56,8 @@ TextureImporter:
     21300102: tileset_51
     21300104: tileset_52
     21300106: tileset_53
-    21300108: tileset_54
-    21300110: tileset_55
+    21300108: cave_11
+    21300110: cave_12
     21300112: tileset_56
     21300114: Ground_26
     21300116: Ground_27
@@ -71,15 +71,15 @@ TextureImporter:
     21300132: tileset_66
     21300134: tileset_67
     21300136: tileset_68
-    21300138: tileset_69
-    21300140: tileset_70
-    21300142: tileset_71
+    21300138: cave_13
+    21300140: cave_14
+    21300142: cave_15
     21300144: tileset_72
     21300146: tileset_73
     21300148: tileset_74
     21300150: tileset_75
-    21300152: tileset_76
-    21300154: tileset_77
+    21300152: cave_16
+    21300154: cave_17
     21300156: tileset_78
     21300158: tileset_79
     21300160: tileset_80
@@ -89,8 +89,8 @@ TextureImporter:
     21300168: tileset_84
     21300170: tileset_85
     21300172: tileset_86
-    21300174: tileset_87
-    21300176: tileset_88
+    21300174: cave_18
+    21300176: cave_19
     21300178: tileset_89
     21300180: tileset_90
     21300182: tileset_91
@@ -109,7 +109,7 @@ TextureImporter:
     21300208: tileset_104
     21300210: tileset_105
     21300212: tileset_106
-    21300214: tileset_107
+    21300214: dziwny
     21300216: tileset_108
   externalObjects: {}
   serializedVersion: 7
@@ -424,7 +424,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_11
+      name: cave_0
       rect:
         serializedVersion: 2
         x: 192
@@ -444,7 +444,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_12
+      name: cave_3
       rect:
         serializedVersion: 2
         x: 224
@@ -464,7 +464,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_13
+      name: cave_5
       rect:
         serializedVersion: 2
         x: 256
@@ -484,7 +484,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_14
+      name: cave_8
       rect:
         serializedVersion: 2
         x: 288
@@ -624,7 +624,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_21
+      name: cave_1
       rect:
         serializedVersion: 2
         x: 192
@@ -644,7 +644,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_22
+      name: cave_4
       rect:
         serializedVersion: 2
         x: 224
@@ -664,7 +664,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_23
+      name: cave_6
       rect:
         serializedVersion: 2
         x: 256
@@ -684,7 +684,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_24
+      name: cave_9
       rect:
         serializedVersion: 2
         x: 288
@@ -864,7 +864,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_33
+      name: cave_2
       rect:
         serializedVersion: 2
         x: 192
@@ -884,7 +884,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_34
+      name: cave_7
       rect:
         serializedVersion: 2
         x: 256
@@ -904,7 +904,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_35
+      name: cave_10
       rect:
         serializedVersion: 2
         x: 288
@@ -1284,7 +1284,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_54
+      name: cave_11
       rect:
         serializedVersion: 2
         x: 272
@@ -1304,7 +1304,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_55
+      name: cave_12
       rect:
         serializedVersion: 2
         x: 288
@@ -1584,7 +1584,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_69
+      name: cave_13
       rect:
         serializedVersion: 2
         x: 272
@@ -1604,7 +1604,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_70
+      name: cave_14
       rect:
         serializedVersion: 2
         x: 288
@@ -1624,7 +1624,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_71
+      name: cave_15
       rect:
         serializedVersion: 2
         x: 304
@@ -1724,7 +1724,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_76
+      name: cave_16
       rect:
         serializedVersion: 2
         x: 272
@@ -1744,7 +1744,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_77
+      name: cave_17
       rect:
         serializedVersion: 2
         x: 288
@@ -1944,7 +1944,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_87
+      name: cave_18
       rect:
         serializedVersion: 2
         x: 272
@@ -1964,7 +1964,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_88
+      name: cave_19
       rect:
         serializedVersion: 2
         x: 288
@@ -2344,7 +2344,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_107
+      name: dziwny
       rect:
         serializedVersion: 2
         x: 144
