@@ -4,57 +4,138 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    Vector3 movement;
+    float movement;
 
     Rigidbody2D rB2D;
 
-    public float jumpVelocity = 2f;
+    public float jumpVelocity = 3f;
 
     public float speed = 1.333f;
 
+    bool isCrouch = false;
+
+    bool isAir = false;
+
+    bool isManaEmpty = false;
+
+    public Animator animator;
+
+    public ShieldController shieldControll;
+
+    public ManaBar manabar;
+    
     SpriteRenderer SR;
+
 
 	// Use this for initialization
 	void Start () {
 
-        movement = new Vector3(0.0f, 0.0f, 0.0f);
-
         SR = GetComponent<SpriteRenderer>();
 
         rB2D = GetComponent<Rigidbody2D>();
-
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
 
-        movement.x = Input.GetAxisRaw("Horizontal");
+        Movement();
 
-        transform.position += (movement * speed * Time.deltaTime);
+        Animation();
+    }
 
+    //------------------ Służy do obliczeń itp odnośnie controlera postaci------------------
+    void Movement()
+    {
+        if (isCrouch == true)
+        {
+            movement = 0;
+            jumpVelocity = 0;
+        }
+        else
+        {
+            jumpVelocity = 2.9f;
+        }
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        { 
-            if(rB2D.velocity.y == 0)
+        movement = Input.GetAxisRaw("Horizontal");
+
+        if (movement > 0)
+        {
+            SR.flipX = false;
+
+        }
+        else if (movement < 0)
+        {
+            SR.flipX = true;
+        }
+
+        this.transform.position += new Vector3(movement * speed * Time.deltaTime, 0, 0);
+    }
+
+    //------------------skrypt do animowania postaci------------------
+    void Animation()
+    {
+        if (rB2D.velocity.y > 0.1f)
+        {
+            animator.SetBool("IsJump", true);
+            isAir = true;
+        }
+        else if(rB2D.velocity.y < -0.1f)
+        {
+            animator.SetBool("IsFall", true);
+            animator.SetBool("IsJump", false);
+            isAir = true;
+        }
+        else if(rB2D.velocity.y == 0)
+        {
+            animator.SetBool("IsFall", false);
+            animator.SetBool("IsJump", false);
+            isAir = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (rB2D.velocity.y == 0)
             {
                 rB2D.AddForce(transform.up * jumpVelocity, ForceMode2D.Impulse);
             }
         }
 
-        
-
-
-        if(movement.x > 0)
+        if (Input.GetKey(KeyCode.S))
         {
-            SR.flipX = false;
-
+            if(isManaEmpty == true)
+            {
+                speed = 1.333f;
+                animator.SetBool("IsCrouch", false);
+                isCrouch = false;
+                shieldControll.Disable();
+                return;
+            }
+            if (isAir == true) { return; }
+            manabar.ShieldWhenS();
+            speed = 0;
+            animator.SetBool("IsCrouch", true);
+            isCrouch = true;
+            animator.SetFloat("Speed", 0);
+            shieldControll.Enable();
+            if(manabar.mana.manaAmount <= 2)
+            {
+                isManaEmpty = true;
+            }
+            return;
         }
-        else if(movement.x < 0)
+        else
         {
-            SR.flipX = true;
+            if(manabar.mana.manaAmount >= 2)
+            {
+                isManaEmpty = false;
+            }
+            speed = 1.333f;
+            animator.SetBool("IsCrouch", false);
+            isCrouch = false;
+            shieldControll.Disable();
         }
-        
-        
-	}
+
+        animator.SetFloat("Speed", Mathf.Abs(movement));
+    }
+    
 }
