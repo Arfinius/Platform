@@ -4,32 +4,46 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ManaBar : MonoBehaviour {
+    
 
-    private Image barImage;
+    private RawImage barRawImage;
+
+    private RectTransform barMaskRectTransform;
 
     public Mana mana;
 
+    public Image imageMana;
+
     bool isEmptyMana = false;
+
 
     private void Awake()
     {
-        barImage = transform.Find("bar").GetComponent<Image>();
+        barMaskRectTransform = transform.Find("barMask").GetComponent<RectTransform>();
+        
+        barRawImage = transform.Find("barMask").Find("bar").GetComponent<RawImage>();
+
+        
 
         mana = new Mana();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         mana.Update();
 
-        barImage.fillAmount = mana.GetNormalized();
+        Rect uvRect = barRawImage.uvRect;
+        uvRect.x += .1f * Time.fixedDeltaTime;
+        barRawImage.uvRect = uvRect;
+
+        imageMana.fillAmount = mana.GetNormalized();
     }
 
     public void ShieldWhenS()
     {
         if (isEmptyMana == false)
         {
-            mana.TrySpendMana(1);
+            mana.TrySpendMana(2);
         }
         if (mana.manaAmount <= 0)
         {
@@ -47,7 +61,7 @@ public class Mana
 {
     public const int Mana_Max = 100;
     public float manaAmount = 100;
-    private float manaRegenAmount = 25;
+    private float manaRegenAmount = 20;
 
     public void Update()
     {

@@ -18,12 +18,18 @@ public class PlayerMovement : MonoBehaviour {
 
     bool isManaEmpty = false;
 
+    bool isCrouchPressed = false;
+
     public Animator animator;
 
     public ShieldController shieldControll;
 
     public ManaBar manabar;
+
+    public Joystick joystick;
+
     
+
     SpriteRenderer SR;
 
 
@@ -56,7 +62,22 @@ public class PlayerMovement : MonoBehaviour {
             jumpVelocity = 2.9f;
         }
 
-        movement = Input.GetAxisRaw("Horizontal");
+
+        //joystick !!!!!!
+        if (joystick.Horizontal >= .4f)
+        {
+            movement = speed;
+        }else if(joystick.Horizontal <= -.4f)
+        {
+            movement = -speed;
+        }
+        else
+        {
+            movement = 0;
+        }
+
+
+        //movement = joystick.Horizontal;
 
         if (movement > 0)
         {
@@ -68,30 +89,7 @@ public class PlayerMovement : MonoBehaviour {
             SR.flipX = true;
         }
 
-        this.transform.position += new Vector3(movement * speed * Time.deltaTime, 0, 0);
-    }
-
-    //------------------skrypt do animowania postaci------------------
-    void Animation()
-    {
-        if (rB2D.velocity.y > 0.1f)
-        {
-            animator.SetBool("IsJump", true);
-            isAir = true;
-        }
-        else if(rB2D.velocity.y < -0.1f)
-        {
-            animator.SetBool("IsFall", true);
-            animator.SetBool("IsJump", false);
-            isAir = true;
-        }
-        else if(rB2D.velocity.y == 0)
-        {
-            animator.SetBool("IsFall", false);
-            animator.SetBool("IsJump", false);
-            isAir = false;
-        }
-
+        //skok
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (rB2D.velocity.y == 0)
@@ -100,12 +98,12 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKey(KeyCode.S))
+        //kucanie
+        if (isCrouchPressed==true)
         {
-            if(isManaEmpty == true)
+            if (isManaEmpty == true)
             {
                 speed = 1.333f;
-                animator.SetBool("IsCrouch", false);
                 isCrouch = false;
                 shieldControll.Disable();
                 return;
@@ -113,11 +111,9 @@ public class PlayerMovement : MonoBehaviour {
             if (isAir == true) { return; }
             manabar.ShieldWhenS();
             speed = 0;
-            animator.SetBool("IsCrouch", true);
             isCrouch = true;
-            animator.SetFloat("Speed", 0);
             shieldControll.Enable();
-            if(manabar.mana.manaAmount <= 2)
+            if (manabar.mana.manaAmount <= 2)
             {
                 isManaEmpty = true;
             }
@@ -125,17 +121,84 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
         {
-            if(manabar.mana.manaAmount >= 2)
+            if (manabar.mana.manaAmount >= 2)
             {
                 isManaEmpty = false;
             }
             speed = 1.333f;
-            animator.SetBool("IsCrouch", false);
             isCrouch = false;
             shieldControll.Disable();
+        }
+        
+        this.transform.position += new Vector3(movement * Time.deltaTime, 0, 0);
+    }
+
+    //------------------skrypt do animowania postaci------------------
+    void Animation()
+    {
+        
+        //Tutaj jest animacja skosku
+        
+        if (rB2D.velocity.y > 0.1f)
+        {
+            animator.SetBool("IsJump", true);
+            isAir = true;
+        }
+        else if (rB2D.velocity.y < -0.1f)
+        {
+            animator.SetBool("IsFall", true);
+            animator.SetBool("IsJump", false);
+            isAir = true;
+        }
+        else if (rB2D.velocity.y == 0)
+        {
+            animator.SetBool("IsFall", false);
+            animator.SetBool("IsJump", false);
+            isAir = false;
+        }
+
+        // animacja kucania
+
+        if (isCrouchPressed == true)
+        {
+            if (isManaEmpty == true)
+            {
+                animator.SetBool("IsCrouch", false);
+                return;
+            }
+            if (isAir == true) { return; }
+            animator.SetBool("IsCrouch", true);
+            animator.SetFloat("Speed", 0);
+            return;
+        }
+        else
+        {
+            if (manabar.mana.manaAmount >= 50)
+            {
+                isManaEmpty = false;
+            }
+            animator.SetBool("IsCrouch", false);
         }
 
         animator.SetFloat("Speed", Mathf.Abs(movement));
     }
-    
+
+
+    public void Jump()
+    {
+        if (rB2D.velocity.y == 0)
+        {
+            rB2D.AddForce(transform.up * jumpVelocity, ForceMode2D.Impulse);
+        }
+    }
+
+    public void CrouchDown()
+    {
+        isCrouchPressed = true;
+    }
+
+    public void CrouchUp()
+    {
+        isCrouchPressed = false;
+    }
 }
