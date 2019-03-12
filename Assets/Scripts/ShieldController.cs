@@ -6,7 +6,7 @@ public class ShieldController : MonoBehaviour {
 
 
     public ParticleSystem shield, smallDrops, dropsDown, drops;
-    public Light light;
+    public Light lighter;
 
 
     public void Enable()
@@ -14,7 +14,7 @@ public class ShieldController : MonoBehaviour {
         if(shield.isPlaying == false)
         {
             shield.Play();
-            light.enabled = true;
+            lighter.enabled = true;
         }
         if (smallDrops.isPlaying == false)
         {
@@ -35,7 +35,7 @@ public class ShieldController : MonoBehaviour {
         if (shield.isPlaying == true)
         {
             shield.Stop();
-            light.enabled = false;
+            lighter.enabled = false;
         }
         if (smallDrops.isPlaying == true)
         {

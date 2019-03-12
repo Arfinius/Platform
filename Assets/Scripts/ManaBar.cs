@@ -8,7 +8,7 @@ public class ManaBar : MonoBehaviour {
 
     private RawImage barRawImage;
 
-    private RectTransform barMaskRectTransform;
+    
 
     public Mana mana;
 
@@ -19,11 +19,11 @@ public class ManaBar : MonoBehaviour {
 
     private void Awake()
     {
-        barMaskRectTransform = transform.Find("barMask").GetComponent<RectTransform>();
+        
         
         barRawImage = transform.Find("barMask").Find("bar").GetComponent<RawImage>();
 
-        
+        barRawImage = transform.Find("barMask").Find("bar").GetComponent<RawImage>();
 
         mana = new Mana();
     }
@@ -54,6 +54,8 @@ public class ManaBar : MonoBehaviour {
             isEmptyMana = false;
         }
     }
+
+    
 }
 
 
@@ -61,10 +63,12 @@ public class Mana
 {
     public const int Mana_Max = 100;
     public float manaAmount = 100;
-    private float manaRegenAmount = 20;
+    private float manaRegenAmount = 10;
 
     public void Update()
     {
+        
+
         if (manaAmount > Mana_Max)
         {
             manaAmount = Mana_Max;

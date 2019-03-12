@@ -10,13 +10,13 @@ public class HpBar : MonoBehaviour
 
     public Image imageHp;
 
-    private RectTransform barMaskRectTransform;
+    
 
     public Hp hp;
 
     private void Awake()
     {
-        barMaskRectTransform = transform.Find("barMask").GetComponent<RectTransform>();
+        
         //barImage = transform.Find("bar").GetComponent<Image>();
         barRawImage = transform.Find("barMask").Find("bar").GetComponent<RawImage>();
 

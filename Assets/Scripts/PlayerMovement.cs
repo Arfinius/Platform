@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public float jumpVelocity = 3f;
 
-    public float speed = 1.333f;
+    public float speed = 1.3f;
 
     bool isCrouch = false;
 
@@ -47,7 +47,19 @@ public class PlayerMovement : MonoBehaviour {
         Movement();
 
         Animation();
+        
     }
+
+    //do testów
+    public void FullMana()
+    {
+        manabar.mana.manaAmount = 100;
+        isManaEmpty = false;
+    }
+
+
+
+
 
     //------------------ Służy do obliczeń itp odnośnie controlera postaci------------------
     void Movement()
@@ -64,10 +76,13 @@ public class PlayerMovement : MonoBehaviour {
 
 
         //joystick !!!!!!
-        if (joystick.Horizontal >= .4f)
+        
+
+        if (joystick.Horizontal >= .2f)
         {
             movement = speed;
-        }else if(joystick.Horizontal <= -.4f)
+        }
+        else if (joystick.Horizontal <= -.2f)
         {
             movement = -speed;
         }
@@ -75,9 +90,6 @@ public class PlayerMovement : MonoBehaviour {
         {
             movement = 0;
         }
-
-
-        //movement = joystick.Horizontal;
 
         if (movement > 0)
         {
@@ -99,11 +111,11 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         //kucanie
-        if (isCrouchPressed==true)
+        if (isCrouchPressed==true || Input.GetKey(KeyCode.S))
         {
             if (isManaEmpty == true)
             {
-                speed = 1.333f;
+                speed = 1.3f;
                 isCrouch = false;
                 shieldControll.Disable();
                 return;
@@ -125,7 +137,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 isManaEmpty = false;
             }
-            speed = 1.333f;
+            speed = 1.3f;
             isCrouch = false;
             shieldControll.Disable();
         }
@@ -159,7 +171,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // animacja kucania
 
-        if (isCrouchPressed == true)
+        if (isCrouchPressed == true || Input.GetKey(KeyCode.S))
         {
             if (isManaEmpty == true)
             {
